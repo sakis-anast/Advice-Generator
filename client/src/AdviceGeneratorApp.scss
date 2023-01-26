@@ -1,0 +1,266 @@
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: hsl(218, 23%, 16%);
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  font-family: "Manrope", sans-serif;
+  align-items: center;
+}
+
+.navBar {
+  width: 100vw;
+  height: 50px;
+  margin: 0;
+  background-color: hsl(217, 20%, 23%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+
+  a {
+    color: hsl(150, 100%, 66%);
+    margin-left: 20px;
+    cursor: pointer;
+  }
+
+  .user-name {
+    font-family: "Manrope", sans-serif;
+    color: hsl(150, 100%, 66%);
+    margin-left: 20px;
+  }
+}
+
+.logedIn-Bar {
+  width: 100vw;
+  height: 60px;
+  margin: 0;
+  background-color: hsl(217, 20%, 23%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 80rem;
+
+  a {
+    color: hsl(150, 100%, 66%);
+    //margin-right: 50px;
+    cursor: pointer;
+  }
+
+  .heart {
+    width: 55px;
+    height: 35px;
+  }
+
+  .user-name {
+    font-family: "Manrope", sans-serif;
+    color: hsl(150, 100%, 66%);
+    margin-left: 20px;
+  }
+  .like_div {
+    height: 60px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+
+    svg {
+      width: 26px;
+      height: 26px;
+    }
+  }
+  .my_favs {
+    width: 80px;
+  }
+}
+
+#container {
+  display: flex;
+  position: relative;
+  width: 500px;
+  height: 320px;
+  margin-top: 100px;
+  background-color: hsl(217, 20%, 23%);
+  border: 1px solid rgb(81, 75, 75);
+  border-radius: 15px;
+}
+
+#advArea {
+  top: 20px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  min-width: 450px;
+  margin: 0 auto;
+  height: 200px;
+
+  .advId {
+    font-family: "Manrope", sans-serif;
+    font-size: medium;
+    color: hsl(150, 100%, 66%);
+  }
+
+  .adv {
+    color: hsl(193, 38%, 86%);
+    font-family: "Manrope", sans-serif;
+    font-size: x-large;
+
+    text-align: center;
+  }
+}
+
+#theLines {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 4px;
+  top: 230px;
+  left: 15px;
+
+  .line {
+    background-color: beige;
+    margin: 0;
+    width: 220px;
+    height: 1px;
+    border: 0ch;
+    margin-bottom: 4px;
+  }
+
+  .dotes {
+    margin: 0;
+    margin-right: 2px;
+
+    width: 4px;
+    height: 9px;
+    border: 0ch;
+    border-radius: 10px;
+    background-color: aliceblue;
+  }
+}
+
+#button {
+  position: absolute;
+  top: 293px;
+  margin: 0, auto;
+  left: 220px;
+
+  svg {
+    margin-top: 5px;
+  }
+
+  .btn {
+    background-color: hsl(150, 100%, 66%);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 5px;
+    font-size: 31px;
+    height: 55px;
+    width: 55px;
+    box-shadow: 0 2px 4px darkslategray;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .btn:active {
+    background-color: hsl(150, 100%, 66%);
+    box-shadow: 0 0 2px darkslategray;
+    transform: translateY(2px);
+    animation: glowing 1300ms infinite;
+  }
+
+  .btn:hover {
+    color: hsl(150, 100%, 66%);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.4);
+  }
+}
+
+.modalOverlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+
+  z-index: 1;
+}
+
+.modalContainer {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  min-width: 450px;
+  min-height: 500px;
+  position: fixed;
+  top: 300px;
+  left: 50%;
+  background-color: hsl(216, 14%, 21%);
+  border-radius: 10px;
+  padding: 30px;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.75);
+
+  .modalBtn {
+    position: relative;
+    bottom: 5%;
+    left: 100%;
+    cursor: pointer;
+  }
+  .title {
+    color: hsl(150, 100%, 66%);
+    text-align: center;
+  }
+
+  label {
+    display: flex;
+    text-transform: capitalize;
+    margin-top: 1.2rem;
+    margin-bottom: 0.3rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+    font-weight: 400;
+    color: hsl(150, 100%, 66%);
+  }
+
+  input {
+    width: 100%;
+    line-height: 3rem;
+    background-color: rgb(229, 231, 235);
+    border: none;
+    border-radius: 4px;
+  }
+
+  button {
+    margin-top: 2.2rem;
+    width: 100%;
+    height: 3rem;
+    text-transform: capitalize;
+    font-size: 0.9rem;
+    font-weight: 700;
+    font-family: "Roboto", sans-serif;
+    color: hsl(150, 100%, 66%);
+    background-color: hsl(218, 23%, 16%);
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+  }
+}
+.favs {
+  font-family: "Manrope", sans-serif;
+  color: hsl(193, 38%, 86%);
+  font-size: 17px;
+  button {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.trash {
+  color: hsl(150, 100%, 66%);
+  cursor: pointer;
+}
