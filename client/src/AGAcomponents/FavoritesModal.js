@@ -6,11 +6,11 @@ const FavoritesModal = ({ open, onClose, getAdvices, deleteAdvice }) => {
   return (
     <div className="modalOverlay">
       <div className="modalContainer">
-        <a className="modalBtn" onClick={onClose}>
+        <span className="modalBtn" onClick={onClose}>
           X
-        </a>
+        </span>
 
-        <h2 class="title"> My Favorites Advices </h2>
+        <h2 className="title"> My Favorites Advices </h2>
         <div>
           {getAdvices &&
             getAdvices.map((getAdvice) => {
@@ -20,13 +20,13 @@ const FavoritesModal = ({ open, onClose, getAdvices, deleteAdvice }) => {
                     <li className="favs">
                       {getAdvice.advice}
                       {"  "}
-                      <a
+                      <span
                         onClick={() => {
                           deleteAdvice(getAdvice._id);
                         }}
                       >
                         <FontAwesomeIcon className="trash" icon={faTrash} />
-                      </a>
+                      </span>
                     </li>
                   </ul>
                 </div>

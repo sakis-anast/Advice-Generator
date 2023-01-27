@@ -37,11 +37,11 @@ const LoginModal = ({
   return (
     <div className="modalOverlay">
       <div className="modalContainer">
-        <a className="modalBtn" onClick={onClose}>
+        <span className="modalBtn" onClick={onClose}>
           X
-        </a>
+        </span>
 
-        <h2 class="title"> Login </h2>
+        <h2 className="title"> Login </h2>
         <form action="login-box">
           <label htmlFor="username">username</label>
           <input
@@ -58,7 +58,7 @@ const LoginModal = ({
             }}
           />
           <button
-            class="loginBtn"
+            className="loginBtn"
             type="submit"
             onClick={(e) => {
               login(e);
