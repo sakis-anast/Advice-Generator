@@ -1,6 +1,6 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-
+import {  useState } from "react";
+// useEffect,
 const SignupModal = ({
   open,
   onClose,
@@ -32,11 +32,11 @@ const SignupModal = ({
   return (
     <div className="modalOverlay">
       <div className="modalContainer">
-        <a className="modalBtn" onClick={onClose}>
+        <span className="modalBtn" onClick={onClose}>
           X
-        </a>
+        </span>
 
-        <h2 class="title"> Sign up </h2>
+        <h2 className="title"> Sign up </h2>
         <form action="login-box">
           <label htmlFor="username">username</label>
           <input
@@ -53,7 +53,7 @@ const SignupModal = ({
             }}
           />
           <button
-            class="signupBtn"
+            className="signupBtn"
             type="submit"
             onClick={(e) => {
               signUp(e);

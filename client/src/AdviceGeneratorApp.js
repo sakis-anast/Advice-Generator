@@ -5,8 +5,8 @@ import SignupModal from "./AGAcomponents/SignupModal";
 import LoginModal from "./AGAcomponents/LoginModal";
 import FavoritesModal from "./AGAcomponents/FavoritesModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faTrash } from "@fortawesome/free-solid-svg-icons";
-
+import { faHeart} from "@fortawesome/free-solid-svg-icons";
+// , faTrash 
 function AdviceGeneratorApp() {
   const [adviceId, setAdviceId] = useState("");
   const [advice, setAdvice] = useState("");
@@ -16,7 +16,7 @@ function AdviceGeneratorApp() {
   const [profile, setProfile] = useState(false);
   const [user, setUser] = useState("");
   const [favorites, setFavorites] = useState("");
-  const [getAdvices, setGetAdvices] = useState("");
+  const [getAdvices, setGetAdvices] = useState([]);
 
   useEffect(() => {
     getAdvice();
@@ -27,7 +27,7 @@ function AdviceGeneratorApp() {
       .get(`https://api.adviceslip.com/advice`)
       .then(({ data }) => {
         setAdvice(data.slip.advice);
-        setAdviceId(data.slip.id);
+        // setAdviceId(data.slip.id);
       })
       .catch((err) => console.error("Error:", err));
   };
@@ -42,33 +42,49 @@ function AdviceGeneratorApp() {
           setUser(data);
         })
         .catch((err) => console.error("Error:", err));
-    }
+    } faveAdvices()
   }, []);
+  // useEffect(() => {
+    
+  //   if (user){
+  //     axios.post("http://localhost:3636/advice/get" , {userId:user._id})
+  //     .then(({ data }) => {
+  //       setGetAdvices(data);
+  //       console.log(getAdvices)
+  //     })
+  //     .catch((err) => console.error("Error:", err));
+  // }}, [profile]);
+  async function  faveAdvices(){
+await axios.post("http://localhost:3636/advice/get" , {userId:user._id})
+    .then(({ data }) => {
+      setGetAdvices(data);
+      console.log(getAdvices)})
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:3636/advice")
-      .then(({ data }) => {
-        setGetAdvices(data);
-      })
-      .catch((err) => console.error("Error:", err));
-  }, [getAdvices]);
-
+}
   const likeAdvice = () => {
-    setFavorites(advice);
-    console.log(favorites);
+    // setFavorites(advice);
+    const newAdvice = axios
+        .post("http://localhost:3636/advice/", {
+          advice: advice,
+          userId: user._id,
+        })
+        .catch((err) => console.error("Error:", err));
+      // setGetAdvices(getAdvices, newAdvice);
+      console.log(newAdvice);
+      faveAdvices()
+
   };
 
   const saveAdvice = () => {
-    if (favorites) {
-      const newAdvice = axios
-        .post("http://localhost:3636/advice/", {
-          advice: favorites,
-          owner: user._id,
-        })
-        .catch((err) => console.error("Error:", err));
-      setGetAdvices(getAdvices, newAdvice);
-      console.log(getAdvices);
+    if (getAdvices.length) {
+      // const newAdvice = axios
+      //   .post("http://localhost:3636/advice/", {
+      //     advice: advice,
+      //     owner: user._id,
+      //   })
+      //   .catch((err) => console.error("Error:", err));
+      // setGetAdvices(getAdvices, newAdvice);
+      // console.log(getAdvices);
       setOpenFavoritesModal(true);
     } else {
       alert(
@@ -79,57 +95,60 @@ function AdviceGeneratorApp() {
   };
 
   const deleteAdvice = async (id) => {
-    const data = await fetch("http://localhost:3636/advice/" + id, {
+    await fetch("http://localhost:3636/advice/" + id, {
       method: "DELETE",
     })
       .then((res) => res.json())
       .catch((err) => console.error("Error:", err));
 
-    setGetAdvices((getAdvices) =>
-      getAdvices.filter((getAdvice) => getAdvice._id !== data._id)
-    );
+    // setGetAdvices((getAdvices) =>
+    //   getAdvices.filter((getAdvice) => getAdvice._id !== data._id)
+    // );
+    faveAdvices()
   };
 
   return (
     <div className="App">
       {profile ? (
         <div className=" logedIn-Bar">
-          <h1 className="user-name">{user.username}</h1>
+          <h1 className="user-name">{user.username} </h1>
+          
           <div className="like_div">
-            <a
+            <span
               className="heart"
               onClick={() => {
                 likeAdvice();
               }}
             >
               <FontAwesomeIcon icon={faHeart} />
-            </a>
-            <a
+            </span>
+            <span
               className="my_favs"
               onClick={() => {
                 saveAdvice();
               }}
             >
               My favorites
-            </a>
+            </span>
+            
           </div>
         </div>
       ) : (
         <div className="navBar">
-          <a
+          <span
             onClick={() => {
               setOpenSignupModal(true);
             }}
           >
             Signup
-          </a>
-          <a
+          </span>
+          <span
             onClick={() => {
               setOpenLoginModal(true);
             }}
           >
             Login
-          </a>
+          </span>
         </div>
       )}
 
@@ -161,21 +180,21 @@ function AdviceGeneratorApp() {
 
       <div id="container">
         <div id="advArea">
-          <h4 class="advId">{adviceId}</h4>
-          <h1 class="adv">{advice}</h1>
+          <h4 className="advId">{adviceId}</h4>
+          <h1 className="adv">{advice}</h1>
         </div>
         <div id="theLines">
-          <hr class="line" />
-          <hr class="dotes" />
-          <hr class="dotes" />
-          <hr class="line" />
+          <hr className="line" />
+          <hr className="dotes" />
+          <hr className="dotes" />
+          <hr className="line" />
         </div>
         <div id="button">
           <button
             onClick={() => {
               getAdvice();
             }}
-            class="btn"
+            className="btn"
           >
             <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg">
               <path
