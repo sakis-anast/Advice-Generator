@@ -1,12 +1,13 @@
 const mongoose = require("mongoose");
-
-main()
-  .catch((err) => console.log(err))
-  .then(() => console.log("mongoDB is connected"));
-
-async function main() {
-  //mongoose.set("strictQuery", false);
-  await mongoose.connect(process.env.MONGO_URI);
-}
-
-module.exports = mongoose;
+require("dotenv").config();
+mongoose.set('strictQuery', false)
+const uri =process.env.mondoDB_Api
+const connection = mongoose
+.connect(uri)
+.then(()=>{
+    console.log("Connected to database")
+})
+.catch((err)=>{
+    console.log("Error connection to the database", err);
+});
+mongoose.modelNames.exports = connection;
