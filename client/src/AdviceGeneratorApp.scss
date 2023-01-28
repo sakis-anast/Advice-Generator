@@ -1,9 +1,11 @@
+@import "variables";
+
 body {
   margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: hsl(218, 23%, 16%);
+  background-color: $bg-color;
 }
 
 .App {
@@ -17,21 +19,22 @@ body {
   width: 100vw;
   height: 50px;
   margin: 0;
-  background-color: hsl(217, 20%, 23%);
+  background-color: $nav-color;
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 20px;
 
-  a , span{
-    color: hsl(150, 100%, 66%);
+  a,
+  span {
+    color: $text-color;
     margin-left: 20px;
     cursor: pointer;
   }
 
   .user-name {
     font-family: "Manrope", sans-serif;
-    color: hsl(150, 100%, 66%);
+    color: $text-color;
     margin-left: 20px;
   }
 }
@@ -44,10 +47,9 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 80rem;
-
+  justify-content: space-between;
   a {
-    color: hsl(150, 100%, 66%);
+    color: $text-color;
     //margin-right: 50px;
     cursor: pointer;
   }
@@ -59,7 +61,7 @@ body {
 
   .user-name {
     font-family: "Manrope", sans-serif;
-    color: hsl(150, 100%, 66%);
+    color: $text-color;
     margin-left: 20px;
   }
   .like_div {
@@ -85,7 +87,7 @@ body {
   height: 320px;
   margin-top: 100px;
   background-color: hsl(217, 20%, 23%);
-  border: 1px solid rgb(81, 75, 75);
+  border: 1px solid $border-color;
   border-radius: 15px;
 }
 
@@ -101,7 +103,7 @@ body {
   .advId {
     font-family: "Manrope", sans-serif;
     font-size: medium;
-    color: hsl(150, 100%, 66%);
+    color: $text-color;
   }
 
   .adv {
@@ -155,7 +157,7 @@ body {
   }
 
   .btn {
-    background-color: hsl(150, 100%, 66%);
+    background-color: $text-color;
     color: white;
     border: none;
     border-radius: 50px;
@@ -169,14 +171,14 @@ body {
   }
 
   .btn:active {
-    background-color: hsl(150, 100%, 66%);
+    background-color: $text-color;
     box-shadow: 0 0 2px darkslategray;
     transform: translateY(2px);
     animation: glowing 1300ms infinite;
   }
 
   .btn:hover {
-    color: hsl(150, 100%, 66%);
+    color: $text-color;
     box-shadow: 0 5px 15px rgba(255, 255, 255, 0.4);
   }
 }
@@ -212,7 +214,7 @@ body {
     cursor: pointer;
   }
   .title {
-    color: hsl(150, 100%, 66%);
+    color: $text-color;
     text-align: center;
   }
 
@@ -224,7 +226,7 @@ body {
     font-size: 0.7rem;
     letter-spacing: 0.5px;
     font-weight: 400;
-    color: hsl(150, 100%, 66%);
+    color: $text-color;
   }
 
   input {
@@ -243,8 +245,8 @@ body {
     font-size: 0.9rem;
     font-weight: 700;
     font-family: "Roboto", sans-serif;
-    color: hsl(150, 100%, 66%);
-    background-color: hsl(218, 23%, 16%);
+    color: $text-color;
+    background-color: $bg-color;
     border-radius: 4px;
     border: none;
     cursor: pointer;
@@ -261,6 +263,6 @@ body {
 }
 
 .trash {
-  color: hsl(150, 100%, 66%);
+  color: $text-color;
   cursor: pointer;
 }
