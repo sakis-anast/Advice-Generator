@@ -118,13 +118,11 @@ function AdviceGeneratorApp() {
             </a>
           </div>
           <div>
-            <a
-              className="heart"
-              onClick={() => {
-                likeAdvice();
-              }}
-            >
-              ok
+            <a>
+              <label className="switch">
+                <input type="checkbox" />
+                <span className="slider round"></span>
+              </label>
             </a>
           </div>
           <div>
