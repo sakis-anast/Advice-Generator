@@ -23,6 +23,7 @@ const SignupModal = ({
           setOpenSignupModal(false);
           setOpenLoginModal(true);
         } else {
+          setOpenSignupModal(false);
           alert(data.message);
         }
       });

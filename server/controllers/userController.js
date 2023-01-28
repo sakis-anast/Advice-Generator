@@ -17,7 +17,7 @@ const userSignup = async (req, res) => {
             password: hash,
           });
           await newUser.save();
-          res.send({ message: true });
+          res.send({ message: "New User Created" });
         } else {
           console.log(err);
           res.send({ message: false });
