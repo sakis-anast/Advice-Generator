@@ -23,7 +23,6 @@ const LoginModal = ({
         console.log(data);
         if (data.token) {
           localStorage.setItem("token", data.token);
-          // navigate("/profile");
           console.log(user);
           setOpenLoginModal(false);
           setProfile(true);

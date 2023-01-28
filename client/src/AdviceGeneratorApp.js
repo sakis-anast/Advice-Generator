@@ -47,7 +47,7 @@ function AdviceGeneratorApp() {
         .catch((err) => console.error("Error:", err));
     }
     faveAdvices();
-  }, []);
+  }, [profile]);
   // useEffect(() => {
 
   //   if (user){
@@ -80,24 +80,14 @@ function AdviceGeneratorApp() {
   };
 
   const saveAdvice = () => {
-    if (getAdvices.length) {
-      // const newAdvice = axios
-      //   .post("http://localhost:3636/advice/", {
-      //     advice: advice,
-      //     owner: user._id,
-      //   })
-      //   .catch((err) => console.error("Error:", err));
-      // setGetAdvices(getAdvices, newAdvice);
-      // console.log(getAdvices);
       setOpenFavoritesModal(true);
-    } else {
-      alert(
-        "Not any favorite advice to your collection yet. When you like an advice, we advice you to press like."
-      );
-      setOpenFavoritesModal(false);
-    }
-  };
+      faveAdvices();
 
+  };
+  const logOut = ()=>{
+    setProfile(false)
+    localStorage.clear()
+  }
   const deleteAdvice = async (id) => {
     await fetch("http://localhost:3636/advice/" + id, {
       method: "DELETE",
@@ -147,7 +137,12 @@ function AdviceGeneratorApp() {
           </div>
 
           <div>
-            <a>
+            <a
+              className="logout"
+              onClick={() => {
+                logOut();
+              }}
+            >
               <FontAwesomeIcon icon={faArrowRightFromBracket} />
             </a>
           </div>
