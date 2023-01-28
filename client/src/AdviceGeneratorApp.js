@@ -5,8 +5,11 @@ import SignupModal from "./AGAcomponents/SignupModal";
 import LoginModal from "./AGAcomponents/LoginModal";
 import FavoritesModal from "./AGAcomponents/FavoritesModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart} from "@fortawesome/free-solid-svg-icons";
-// , faTrash 
+import {
+  faHeart,
+  faArrowRightFromBracket,
+} from "@fortawesome/free-solid-svg-icons";
+// , faTrash
 function AdviceGeneratorApp() {
   const [adviceId, setAdviceId] = useState("");
   const [advice, setAdvice] = useState("");
@@ -27,7 +30,7 @@ function AdviceGeneratorApp() {
       .get(`https://api.adviceslip.com/advice`)
       .then(({ data }) => {
         setAdvice(data.slip.advice);
-        // setAdviceId(data.slip.id);
+        setAdviceId(data.slip.id);
       })
       .catch((err) => console.error("Error:", err));
   };
@@ -42,10 +45,11 @@ function AdviceGeneratorApp() {
           setUser(data);
         })
         .catch((err) => console.error("Error:", err));
-    } faveAdvices()
+    }
+    faveAdvices();
   }, []);
   // useEffect(() => {
-    
+
   //   if (user){
   //     axios.post("http://localhost:3636/advice/get" , {userId:user._id})
   //     .then(({ data }) => {
@@ -54,25 +58,25 @@ function AdviceGeneratorApp() {
   //     })
   //     .catch((err) => console.error("Error:", err));
   // }}, [profile]);
-  async function  faveAdvices(){
-await axios.post("http://localhost:3636/advice/get" , {userId:user._id})
-    .then(({ data }) => {
-      setGetAdvices(data);
-      console.log(getAdvices)})
-
-}
+  async function faveAdvices() {
+    await axios
+      .post("http://localhost:3636/advice/get", { userId: user._id })
+      .then(({ data }) => {
+        setGetAdvices(data);
+        console.log(getAdvices);
+      });
+  }
   const likeAdvice = () => {
     // setFavorites(advice);
     const newAdvice = axios
-        .post("http://localhost:3636/advice/", {
-          advice: advice,
-          userId: user._id,
-        })
-        .catch((err) => console.error("Error:", err));
-      // setGetAdvices(getAdvices, newAdvice);
-      console.log(newAdvice);
-      faveAdvices()
-
+      .post("http://localhost:3636/advice/", {
+        advice: advice,
+        userId: user._id,
+      })
+      .catch((err) => console.error("Error:", err));
+    // setGetAdvices(getAdvices, newAdvice);
+    console.log(newAdvice);
+    faveAdvices();
   };
 
   const saveAdvice = () => {
@@ -104,7 +108,7 @@ await axios.post("http://localhost:3636/advice/get" , {userId:user._id})
     // setGetAdvices((getAdvices) =>
     //   getAdvices.filter((getAdvice) => getAdvice._id !== data._id)
     // );
-    faveAdvices()
+    faveAdvices();
   };
 
   return (
@@ -112,25 +116,47 @@ await axios.post("http://localhost:3636/advice/get" , {userId:user._id})
       {profile ? (
         <div className=" logedIn-Bar">
           <h1 className="user-name">{user.username} </h1>
-          
+
           <div className="like_div">
-            <span
+            <a
               className="heart"
               onClick={() => {
                 likeAdvice();
               }}
             >
               <FontAwesomeIcon icon={faHeart} />
-            </span>
-            <span
+            </a>
+          </div>
+          <div>
+            <a
+              className="heart"
+              onClick={() => {
+                likeAdvice();
+              }}
+            >
+              ok
+            </a>
+          </div>
+          <div>
+            <a
               className="my_favs"
               onClick={() => {
                 saveAdvice();
               }}
             >
               My favorites
-            </span>
-            
+            </a>
+          </div>
+
+          <div>
+            <a
+              className="heart"
+              onClick={() => {
+                likeAdvice();
+              }}
+            >
+              <FontAwesomeIcon icon={faArrowRightFromBracket} />
+            </a>
           </div>
         </div>
       ) : (
